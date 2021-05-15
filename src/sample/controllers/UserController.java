@@ -54,10 +54,14 @@ public class UserController {
         if (user.userHaveEmptyFields()) {
             JOptionPane.showMessageDialog(null, "There some empty fields that should be initialized");
         } else {
-            if (user.getMarrige() != null) {
-                if (!UserDAO.dbCheckIfExistUser(user.getMarrige())) {
-                    JOptionPane.showMessageDialog(null, "There no such user with id: "+user.getMarrige());
-                     return;
+            if (user.getMarriage() != null) {
+                if (!UserDAO.dbCheckIfExistUser(user.getMarriage())) {
+                    JOptionPane.showMessageDialog(null, "There no such user with id: " + user.getMarriage());
+                    return;
+                }
+                if (UserDAO.dbCheckIftUserIsMarried(user.getMarriage())) {
+                    JOptionPane.showMessageDialog(null, "There user with id: " + user.getMarriage() + " is already married");
+                    return;
                 }
             }
 
@@ -68,8 +72,50 @@ public class UserController {
 
     @FXML
     public void updateUser(javafx.event.ActionEvent actionEvent) throws SQLException {
+        User user = new User(nameUpdate.getText(), surnameUpdate.getText(), genderUpdate.getText(), date_birthdayUpdate.getValue(), marrigeUpdate.getText(), idUser.getText());
+        if (user.userHaveEmptyFields()) {
+            JOptionPane.showMessageDialog(null, "There some empty fields that should be filled");
+        } else {
+            if (user.getMarriage() != null) {
+                if (!UserDAO.dbCheckIfExistUser(user.getMarriage())) {
+                    JOptionPane.showMessageDialog(null, "There no such user with id: " + user.getMarriage());
+                    return;
+                }
+                if (UserDAO.dbCheckIftUserIsMarried(user.getMarriage())) {
+                    JOptionPane.showMessageDialog(null, "There user with id : " + user.getMarriage() + "is already married");
+                    return;
+                }
+                if (!UserDAO.dbCheckIfExistUser(user.getId())) {
+                    JOptionPane.showMessageDialog(null, "There no such user with id: " + user.getId());
+                    return;
+                }
+            }
+
+            UserDAO.dbUpdateUser(user);
+        }
+
     }
+
+    @FXML
+    public void deleteUser(javafx.event.ActionEvent actionEvent) throws SQLException {
+
+        if (idUser.getText() == "") {
+            JOptionPane.showMessageDialog(null, "There some empty fields that should be filled");
+        } else {
+
+            Integer id = Integer.parseInt(idUser.getId());
+            if (!UserDAO.dbCheckIfExistUser(id)) {
+                JOptionPane.showMessageDialog(null, "There no such user with id: " + id);
+                return;
+            }
+            UserDAO.dbDeleteUser(id);
+        }
+
+
+    }
+
 }
+
 
 
 
