@@ -34,12 +34,12 @@ public class ConnectionUtil {
     }
     public static void dbExcecuteQuery(String sqlStmt) throws SQLException {
 
-        Statement stmt = null;
+        PreparedStatement stmt = null;
         try {
 
            connectdb();
-           stmt = conn.createStatement();
-           stmt.executeUpdate(sqlStmt);
+           stmt = conn.prepareStatement(sqlStmt);
+           stmt.executeUpdate();
        }
        catch (SQLException e)
        {
