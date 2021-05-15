@@ -4,11 +4,13 @@ package sample;
 
 //import javax.sql.rowset.CachedRowSet;
 //import javax.sql.rowset.RowSetProvider;
+import sample.model.User;
+
 import java.sql.*;
 import javax.swing.*;
 
 public class ConnectionUtil {
-    private static Connection conn = null;
+    public static Connection conn = null;
     public static final String JDBS_DRIVER = "com.mysql.jdbc.Driver";
     public static final String connStr = "jdbc:mysql://localhost:3306/lab2db";
 
@@ -32,28 +34,7 @@ public class ConnectionUtil {
             throw throwables;
         }
     }
-    public static void dbExcecuteQuery(String sqlStmt) throws SQLException {
 
-        PreparedStatement stmt = null;
-        try {
-
-           connectdb();
-           stmt = conn.prepareStatement(sqlStmt);
-           stmt.executeUpdate();
-       }
-       catch (SQLException e)
-       {
-           System.out.println("Problems with dbExecuteQuery operation"+e);
-           throw e;
-       }
-       finally {
-           if(stmt!=null)
-           {
-               stmt.close();
-           }
-           dbDisconnect();
-       }
-    }
     /*public static ResultSet dbExecute(String sqlStmt) throws SQLException {
         Statement stmt=null;
         ResultSet resultSet=null;

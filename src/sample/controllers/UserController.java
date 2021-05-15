@@ -1,13 +1,13 @@
 package sample.controllers;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
+import sample.model.User;
 import sample.model.UserDAO;
 
-import java.awt.event.ActionEvent;
+import javax.swing.*;
 import java.sql.SQLException;
 
 public class UserController {
@@ -40,26 +40,36 @@ public class UserController {
     private TextField genderUpdate;
 
     @FXML
-    private TextField birthdayUpdate;
-
-    @FXML
     private TextField idUser;
 
     @FXML
     private DatePicker date_birthday;
 
     @FXML
-   public void insertUser(javafx.event.ActionEvent actionEvent) throws SQLException {
-        int userMarrige=-1;
-        if(!marrigeUser.getText().equals(""))
-        {
-            userMarrige=Integer.parseInt(marrigeUser.getText());
+    private DatePicker date_birthdayUpdate;
+
+    @FXML
+    public void insertUser(javafx.event.ActionEvent actionEvent) throws SQLException {
+        User user = new User(nameUser.getText(), surnameUser.getText(), genderUser.getText(), date_birthday.getValue(), marrigeUser.getText());
+        if (user.userHaveEmptyFields()) {
+            JOptionPane.showMessageDialog(null, "There some empty fields that should be initialized");
+        } else {
+            if (user.getMarrige() != null) {
+                if (!UserDAO.dbCheckIfExistUser(user.getMarrige())) {
+                    JOptionPane.showMessageDialog(null, "There no such user with id: "+user.getMarrige());
+                     return;
+                }
+            }
+
+            UserDAO.dbInsertUser(user);
         }
-        UserDAO.insertEmployee(nameUser.getText(), surnameUser.getText(), genderUser.getText(), date_birthday.getValue(), userMarrige);
 
     }
 
-
-
+    @FXML
+    public void updateUser(javafx.event.ActionEvent actionEvent) throws SQLException {
+    }
 }
+
+
 
