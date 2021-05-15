@@ -99,11 +99,12 @@ public class UserController {
     @FXML
     public void deleteUser(javafx.event.ActionEvent actionEvent) throws SQLException {
 
-        if (idUser.getText() == "") {
+        if (idUser.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "There some empty fields that should be filled");
         } else {
 
-            Integer id = Integer.parseInt(idUser.getId());
+            Integer id = Integer.parseInt(idUser.getText());
+            System.out.println(id);
             if (!UserDAO.dbCheckIfExistUser(id)) {
                 JOptionPane.showMessageDialog(null, "There no such user with id: " + id);
                 return;

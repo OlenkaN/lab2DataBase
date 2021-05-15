@@ -31,7 +31,7 @@ public class UserDAO {
             if (rs.next()) {
                 id = rs.getInt(1);
                 if (!user_id.equals("NULL")) {
-                    dbUpdateUserMarriage(id, user_id);
+                    dbUpdateUserMarriage(id.toString(), user_id);
                 }
 
             }
@@ -64,7 +64,7 @@ public class UserDAO {
             stmt = ConnectionUtil.conn.prepareStatement(updateUser);
             System.out.println(stmt);
             stmt.executeUpdate();
-            dbUpdateUserMarriage(user.getId(), user_id);
+            dbUpdateUserMarriage(user.getId().toString(), user_id);
         } catch (SQLException e) {
             System.out.println("Problems with dbExecuteQuery operation" + e);
             throw e;
@@ -76,7 +76,7 @@ public class UserDAO {
         }
     }
 
-    public static void dbUpdateUserMarriage(Integer id, String marriage_id) throws SQLException {
+    public static void dbUpdateUserMarriage(String id, String marriage_id) throws SQLException {
 
         PreparedStatement stmt = null;
 
@@ -129,7 +129,10 @@ public class UserDAO {
             String checkIdExist = "SELECT user_id FROM users WHERE id =" + id + ";";
             stmt = ConnectionUtil.conn.prepareStatement(checkIdExist);
 
-            return stmt.executeQuery().next();
+             ResultSet resultSet=stmt.executeQuery();
+                     resultSet.next();
+                     return resultSet.getString("user_id")!=null;
+
 
         } catch (SQLException e) {
             System.out.println("Problems with dbExecuteQuery operation" + e);
@@ -146,9 +149,23 @@ public class UserDAO {
         PreparedStatement stmt = null;
         try {
 
+            String deleteUser = "DELETE FROM users WHERE id ='" + id + "';";
+            if(dbCheckIftUserIsMarried(id)) {
+                System.out.println("is married");
+                String checkIdExist = "SELECT user_id FROM users WHERE id =" + id + ";";
+                ConnectionUtil.connectdb();
+
+                        ResultSet resultSet=ConnectionUtil.conn.prepareStatement(checkIdExist).executeQuery();
+                        resultSet.next();
+                        String user_id =resultSet.getString("user_id");
+                System.out.println(user_id);
+                dbUpdateUserMarriage("NULL", user_id);
+                System.out.println("is null");
+
+            }
             ConnectionUtil.connectdb();
-            String deleteUser = "DELETE FROM users WHERE id =" + id + ";";
             stmt = ConnectionUtil.conn.prepareStatement(deleteUser);
+            stmt.executeUpdate();
 
         } catch (SQLException e) {
             System.out.println("Problems with dbExecuteQuery operation" + e);
