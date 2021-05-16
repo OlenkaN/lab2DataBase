@@ -157,9 +157,8 @@ public class UserDAO {
         String sql = "select * from users;";
         try {
             ResultSet resultSet = ConnectionUtil.dbExecute(sql);
-            System.out.println(resultSet);
             ObservableList<Users> usersObservableList = getUsersObjects(resultSet);
-            return  usersObservableList;
+            return usersObservableList;
 
         } catch (SQLException e) {
             System.out.println("Error occured while fetching the records from DB" + e);
@@ -183,7 +182,7 @@ public class UserDAO {
                 users.setUserProperty(resultSet.getInt("user_id"));
                 usersObservableList.add(users);
             }
-            return  usersObservableList;
+            return usersObservableList;
 
         } catch (SQLException e) {
             System.out.println("Error occured while fetching the records from DB" + e);
@@ -191,5 +190,18 @@ public class UserDAO {
             throw e;
         }
 
+    }
+
+    public static ObservableList<Users> searchUsers(String id) throws SQLException {
+        try {
+            String searchUser = "select * from users where id=" + id;
+            ResultSet resultSet = ConnectionUtil.dbExecute(searchUser);
+            ObservableList<Users> usersObservableList= getUsersObjects(resultSet);
+            return usersObservableList;
+        } catch (SQLException e) {
+            System.out.println("Error occured while fetching the records from DB" + e);
+            e.printStackTrace();
+            throw e;
+        }
     }
 }

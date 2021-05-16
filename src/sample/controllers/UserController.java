@@ -83,6 +83,8 @@ public class UserController {
 
             UserDAO.dbInsertUser(user);
         }
+        ObservableList<Users> usersObservableList = UserDAO.getAllRecords();
+        populateTable(usersObservableList);
 
     }
 
@@ -109,6 +111,8 @@ public class UserController {
 
             UserDAO.dbUpdateUser(user);
         }
+        ObservableList<Users> usersObservableList = UserDAO.getAllRecords();
+        populateTable(usersObservableList);
 
     }
 
@@ -127,19 +131,21 @@ public class UserController {
             }
             UserDAO.dbDeleteUser(id);
         }
+        ObservableList<Users> usersObservableList = UserDAO.getAllRecords();
+        populateTable(usersObservableList);
 
 
     }
+
     @FXML
-    private  void initialize()throws Exception
-    {
-        colUserId.setCellValueFactory(cellData->cellData.getValue().idPropertyProperty().asObject());
-        colUserName.setCellValueFactory(cellData->cellData.getValue().namePropertyProperty());
-        colUserSurname.setCellValueFactory(cellData->cellData.getValue().surnamePropertyProperty());
-        colUserBitrhday.setCellValueFactory(cellData->cellData.getValue().birthdayProperty());
-        colUserGender.setCellValueFactory(cellData->cellData.getValue().genderPropertyProperty());
-        colUser_ID.setCellValueFactory(cellData->cellData.getValue().userPropertyProperty().asObject());
-        ObservableList<Users> usersObservableList=UserDAO.getAllRecords();
+    private void initialize() throws Exception {
+        colUserId.setCellValueFactory(cellData -> cellData.getValue().idPropertyProperty().asObject());
+        colUserName.setCellValueFactory(cellData -> cellData.getValue().namePropertyProperty());
+        colUserSurname.setCellValueFactory(cellData -> cellData.getValue().surnamePropertyProperty());
+        colUserBitrhday.setCellValueFactory(cellData -> cellData.getValue().birthdayProperty());
+        colUserGender.setCellValueFactory(cellData -> cellData.getValue().genderPropertyProperty());
+        colUser_ID.setCellValueFactory(cellData -> cellData.getValue().userPropertyProperty().asObject());
+        ObservableList<Users> usersObservableList = UserDAO.getAllRecords();
         populateTable(usersObservableList);
     }
 
@@ -147,6 +153,25 @@ public class UserController {
         usersTable.setItems(usersObservableList);
     }
 
+    @FXML
+    private void searchUser(javafx.event.ActionEvent actionEvent) throws SQLException {
+        if (idUser.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "There id field is empty that should be filled");
+        } else {
+            if (!UserDAO.dbCheckIfExistUser(Integer.parseInt(idUser.getText()))) {
+                JOptionPane.showMessageDialog(null, "There no such user with id: " + idUser.getText());
+                return;
+            }
+            ObservableList<Users> usersObservableList = UserDAO.searchUsers(idUser.getText());
+            populateTable(usersObservableList);
+        }
+    }
+    @FXML
+    private void SearchAllUsers(javafx.event.ActionEvent actionEvent) throws SQLException
+    {
+        ObservableList<Users> usersObservableList = UserDAO.getAllRecords();
+        populateTable(usersObservableList);
+    }
 }
 
 
