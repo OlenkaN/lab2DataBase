@@ -5,8 +5,7 @@ import javafx.beans.property.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-public   class Users
-{
+public class Users {
     private IntegerProperty idProperty;
     private StringProperty nameProperty;
     private StringProperty surnameProperty;
@@ -15,12 +14,12 @@ public   class Users
     private IntegerProperty userProperty;
 
     public Users() {
-        this.idProperty=new SimpleIntegerProperty();
-        this.nameProperty=new SimpleStringProperty();
-        this.surnameProperty=new SimpleStringProperty();
-        this.genderProperty=new SimpleStringProperty();
-        this.birthday=new SimpleObjectProperty<> ();
-        this.userProperty=new SimpleIntegerProperty();
+        this.idProperty = new SimpleIntegerProperty();
+        this.nameProperty = new SimpleStringProperty();
+        this.surnameProperty = new SimpleStringProperty();
+        this.genderProperty = new SimpleStringProperty();
+        this.birthday = new SimpleObjectProperty<>();
+        this.userProperty = new SimpleIntegerProperty();
 
     }
 
@@ -48,7 +47,7 @@ public   class Users
         this.birthday.set(birthday);
     }
 
-    public ObjectProperty< LocalDateTime > birthdayProperty() {
+    public ObjectProperty<LocalDateTime> birthdayProperty() {
         return birthday;
     }
 
