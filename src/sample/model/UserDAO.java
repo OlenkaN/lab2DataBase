@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 
 public class UserDAO {
@@ -156,6 +157,7 @@ public class UserDAO {
         String sql = "select * from users;";
         try {
             ResultSet resultSet = ConnectionUtil.dbExecute(sql);
+            System.out.println(resultSet);
             ObservableList<Users> usersObservableList = getUsersObjects(resultSet);
             return  usersObservableList;
 
@@ -177,7 +179,7 @@ public class UserDAO {
                 users.setNameProperty(resultSet.getString("name"));
                 users.setSurnameProperty(resultSet.getString("surname"));
                 users.setGenderProperty(resultSet.getString("gender"));
-                users.setBirthday((LocalDate) resultSet.getObject("birthday"));
+                users.setBirthday((LocalDateTime) resultSet.getObject("birthday"));
                 users.setUserProperty(resultSet.getInt("user_id"));
                 usersObservableList.add(users);
             }

@@ -10,6 +10,7 @@ import sample.model.Users;
 import javax.swing.*;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class UserController {
 
@@ -57,7 +58,7 @@ public class UserController {
     @FXML
     private TableColumn<Users, String> colUserGender;
     @FXML
-    private TableColumn<Users, LocalDate> colUserBitrhday;
+    private TableColumn<Users, LocalDateTime> colUserBitrhday;
     @FXML
     private TableColumn<Users, Integer> colUser_ID;
     @FXML

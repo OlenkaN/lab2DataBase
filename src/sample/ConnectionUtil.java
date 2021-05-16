@@ -60,14 +60,13 @@ public class ConnectionUtil {
     public static ResultSet dbExecute(String sqlStmt) throws SQLException {
         Statement stmt=null;
         ResultSet resultSet=null;
+        CachedRowSet crs =  RowSetProvider.newFactory().createCachedRowSet();
         try {
 
             connectdb();
             stmt = conn.createStatement();
             resultSet=stmt.executeQuery(sqlStmt);
-
-            CachedRowSet crs = RowSetProvider.newFactory().createCachedRowSet();
-           crs.populate(resultSet);
+            crs.populate(resultSet);
         }
         catch (SQLException e)
         {
@@ -83,9 +82,10 @@ public class ConnectionUtil {
             {
                 stmt.close();
             }
+
             dbDisconnect();
         }
-        return resultSet;
+        return crs;
 
 
     }

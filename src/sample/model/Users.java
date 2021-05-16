@@ -3,6 +3,7 @@ package sample.model;
 import javafx.beans.property.*;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public   class Users
 {
@@ -10,7 +11,7 @@ public   class Users
     private StringProperty nameProperty;
     private StringProperty surnameProperty;
     private StringProperty genderProperty;
-    private ObjectProperty<LocalDate> birthday = new SimpleObjectProperty<>();
+    private ObjectProperty<LocalDateTime> birthday = new SimpleObjectProperty<>();
     private IntegerProperty userProperty;
 
     public Users() {
@@ -39,15 +40,15 @@ public   class Users
         this.genderProperty.set(genderProperty);
     }
 
-    public LocalDate getBirthday() {
+    public LocalDateTime getBirthday() {
         return birthday.get();
     }
 
-    public void setBirthday(LocalDate birthday) {
+    public void setBirthday(LocalDateTime birthday) {
         this.birthday.set(birthday);
     }
 
-    public ObjectProperty< LocalDate > birthdayProperty() {
+    public ObjectProperty< LocalDateTime > birthdayProperty() {
         return birthday;
     }
 
