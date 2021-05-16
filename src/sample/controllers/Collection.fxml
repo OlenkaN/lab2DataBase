@@ -65,7 +65,7 @@
         <TextField fx:id="idCollection" layoutX="626.0" layoutY="127.0" prefHeight="32.0" prefWidth="107.0" promptText="Id" />
         <Button layoutX="297.0" layoutY="176.0" mnemonicParsing="false" onAction="#searchCollection" text="Search" />
         <Button layoutX="389.0" layoutY="176.0" mnemonicParsing="false" onAction="#updateCollection" text="Update" />
-        <Button layoutX="595.0" layoutY="172.0" mnemonicParsing="false" onAction="#SearchAllBrands" prefHeight="38.0" prefWidth="182.0" text="Search All Collections" />
+        <Button layoutX="595.0" layoutY="172.0" mnemonicParsing="false" onAction="#SearchAllCollection" prefHeight="38.0" prefWidth="182.0" text="Search All Collections" />
         <Button layoutX="488.0" layoutY="176.0" mnemonicParsing="false" onAction="#deleteCollection" prefHeight="32.0" prefWidth="71.0" text="Delete" />
     </children>
 </AnchorPane>

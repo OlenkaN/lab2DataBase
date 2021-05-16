@@ -170,7 +170,7 @@ public class CollectionController {
     }
 
     @FXML
-    private void SearchAllBrands(javafx.event.ActionEvent actionEvent) throws SQLException {
+    private void SearchAllCollection(javafx.event.ActionEvent actionEvent) throws SQLException {
         ObservableList<Collections> collectionsObservableList = CollectionDAO.getAllCollection();
         populateTable(collectionsObservableList);
     }
