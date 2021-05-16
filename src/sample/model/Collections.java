@@ -1,13 +1,21 @@
 package sample.model;
 
-import javafx.beans.property.*;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 
-import java.time.LocalDateTime;
-
-public class Brands {
+public class Collections {
     private IntegerProperty idProperty;
     private StringProperty nameProperty;
     private IntegerProperty yearProperty;
+    private IntegerProperty brandIdProperty;
+    public Collections() {
+        this.idProperty = new SimpleIntegerProperty();
+        this.nameProperty = new SimpleStringProperty();
+        this.yearProperty = new SimpleIntegerProperty();
+        this.brandIdProperty = new SimpleIntegerProperty();
+    }
 
     public void setIdProperty(int idProperty) {
         this.idProperty.set(idProperty);
@@ -19,6 +27,10 @@ public class Brands {
 
     public void setYearProperty(int yearProperty) {
         this.yearProperty.set(yearProperty);
+    }
+
+    public void setBrandIdProperty(int brandIdProperty) {
+        this.brandIdProperty.set(brandIdProperty);
     }
 
     public int getIdProperty() {
@@ -45,10 +57,13 @@ public class Brands {
         return yearProperty;
     }
 
-    public Brands() {
-        this.idProperty = new SimpleIntegerProperty();
-        this.nameProperty = new SimpleStringProperty();
-        this.yearProperty = new SimpleIntegerProperty();
-
+    public int getBrandIdProperty() {
+        return brandIdProperty.get();
     }
+
+    public IntegerProperty brandIdPropertyProperty() {
+        return brandIdProperty;
+    }
+
+
 }

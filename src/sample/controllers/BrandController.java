@@ -7,8 +7,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import sample.model.BrandDAO;
 import sample.model.Brands;
-import sample.model.UserDAO;
-import sample.model.Users;
+
 
 import javax.swing.*;
 import java.sql.SQLException;
@@ -40,17 +39,19 @@ public class BrandController {
     private TableView brandTable;
 
     @FXML
-    void deleteUser(javafx.event.ActionEvent actionEvent) throws SQLException {
+    void deleteBrand(javafx.event.ActionEvent actionEvent) throws SQLException {
         if (idBrand.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Id field is empty and should be initialized");
         } else {
             try {
 
                 if (!BrandDAO.dbCheckIfExistBrand(Integer.parseInt(idBrand.getText()))) {
-                    JOptionPane.showMessageDialog(null, "There no such user with id: " + idBrand.getText());
+                    JOptionPane.showMessageDialog(null, "There no such brand with id: " + idBrand.getText());
                     return;
                 }
                 BrandDAO.dbDeleteBrand(Integer.parseInt(idBrand.getText()));
+                ObservableList<Brands> brandsObservableList = BrandDAO.getAllBrand();
+                populateTable(brandsObservableList);
             } catch (NumberFormatException e) {
                 JOptionPane.showMessageDialog(null, "Id should be integer number");
             } catch (SQLException throwables) {
@@ -64,12 +65,14 @@ public class BrandController {
     }
 
     @FXML
-    public void insertUser(javafx.event.ActionEvent actionEvent) throws SQLException {
+    public void insertBrand(javafx.event.ActionEvent actionEvent) throws SQLException {
         if (nameBrand.getText().equals("") || yearBrand.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "There some empty fields that should be initialized");
         } else {
             try {
                 BrandDAO.dbInsertBrand(nameBrand.getText(), Integer.parseInt(yearBrand.getText()));
+                ObservableList<Brands> brandsObservableList = BrandDAO.getAllBrand();
+                populateTable(brandsObservableList);
             } catch (NumberFormatException e) {
                 JOptionPane.showMessageDialog(null, "Year should be integer number");
 
@@ -85,17 +88,19 @@ public class BrandController {
     }
 
     @FXML
-    public void updateUser(javafx.event.ActionEvent actionEvent) throws SQLException {
+    public void updateBrand(javafx.event.ActionEvent actionEvent) throws SQLException {
         if (nameUpdate.getText().equals("") || yearUpdate.getText().equals("") || idBrand.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "There some empty fields that should be initialized");
         } else {
             try {
 
                 if (!BrandDAO.dbCheckIfExistBrand(Integer.parseInt(idBrand.getText()))) {
-                    JOptionPane.showMessageDialog(null, "There no such user with id: " + idBrand.getText());
+                    JOptionPane.showMessageDialog(null, "There no such brand with id: " + idBrand.getText());
                     return;
                 }
                 BrandDAO.dbUpdateBrand(Integer.parseInt(idBrand.getText()), Integer.parseInt(yearUpdate.getText()), nameUpdate.getText());
+                ObservableList<Brands> brandsObservableList = BrandDAO.getAllBrand();
+                populateTable(brandsObservableList);
             } catch (NumberFormatException e) {
                 JOptionPane.showMessageDialog(null, "Year  and id should be integer number");
             } catch (SQLException throwables) {
@@ -126,8 +131,8 @@ public class BrandController {
             JOptionPane.showMessageDialog(null, "There id field is empty and that should be filled");
         } else {
             try {
-                if (!UserDAO.dbCheckIfExistUser(Integer.parseInt(idBrand.getText()))) {
-                    JOptionPane.showMessageDialog(null, "There no such user with id: " + idBrand.getText());
+                if (!BrandDAO.dbCheckIfExistBrand(Integer.parseInt(idBrand.getText()))) {
+                    JOptionPane.showMessageDialog(null, "There no such brand with id: " + idBrand.getText());
                     return;
                 }
                 ObservableList<Brands> brandsObservableList = BrandDAO.searchBrand(idBrand.getText());
