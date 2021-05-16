@@ -1,9 +1,11 @@
 package sample.model;
 
+import javafx.beans.property.IntegerProperty;
+
 import java.time.LocalDate;
 
 public class User {
-    private  Integer id=-1;
+    private Integer id=-1;
     private String name;
     private String surname;
     private String gender;

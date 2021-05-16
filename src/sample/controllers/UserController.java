@@ -1,14 +1,15 @@
 package sample.controllers;
 
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import sample.model.User;
 import sample.model.UserDAO;
+import sample.model.Users;
 
 import javax.swing.*;
 import java.sql.SQLException;
+import java.time.LocalDate;
 
 public class UserController {
 
@@ -47,6 +48,20 @@ public class UserController {
 
     @FXML
     private DatePicker date_birthdayUpdate;
+    @FXML
+    private TableColumn<Users, Integer> colUserId;
+    @FXML
+    private TableColumn<Users, String> colUserName;
+    @FXML
+    private TableColumn<Users, String> colUserSurname;
+    @FXML
+    private TableColumn<Users, String> colUserGender;
+    @FXML
+    private TableColumn<Users, LocalDate> colUserBitrhday;
+    @FXML
+    private TableColumn<Users, Integer> colUser_ID;
+    @FXML
+    private TableView usersTable;
 
     @FXML
     public void insertUser(javafx.event.ActionEvent actionEvent) throws SQLException {
@@ -113,6 +128,22 @@ public class UserController {
         }
 
 
+    }
+    @FXML
+    private  void initialize()throws Exception
+    {
+        colUserId.setCellValueFactory(cellData->cellData.getValue().idPropertyProperty().asObject());
+        colUserName.setCellValueFactory(cellData->cellData.getValue().namePropertyProperty());
+        colUserSurname.setCellValueFactory(cellData->cellData.getValue().surnamePropertyProperty());
+        colUserBitrhday.setCellValueFactory(cellData->cellData.getValue().birthdayProperty());
+        colUserGender.setCellValueFactory(cellData->cellData.getValue().genderPropertyProperty());
+        colUser_ID.setCellValueFactory(cellData->cellData.getValue().userPropertyProperty().asObject());
+        ObservableList<Users> usersObservableList=UserDAO.getAllRecords();
+        populateTable(usersObservableList);
+    }
+
+    private void populateTable(ObservableList<Users> usersObservableList) {
+        usersTable.setItems(usersObservableList);
     }
 
 }

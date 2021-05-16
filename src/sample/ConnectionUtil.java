@@ -2,9 +2,9 @@ package sample;
 
 
 
-//import javax.sql.rowset.CachedRowSet;
-//import javax.sql.rowset.RowSetProvider;
-import sample.model.User;
+import javax.sql.rowset.CachedRowSet;
+import javax.sql.rowset.RowSetProvider;
+
 
 import java.sql.*;
 import javax.swing.*;
@@ -34,18 +34,40 @@ public class ConnectionUtil {
             throw throwables;
         }
     }
+    public static void dbExcecuteQuery(String sqlStmt) throws SQLException {
 
-    /*public static ResultSet dbExecute(String sqlStmt) throws SQLException {
+        PreparedStatement stmt = null;
+        try {
+
+            connectdb();
+            stmt = conn.prepareStatement(sqlStmt);
+            stmt.executeUpdate();
+        }
+        catch (SQLException e)
+        {
+            System.out.println("Problems with dbExecuteQuery operation"+e);
+            throw e;
+        }
+        finally {
+            if(stmt!=null)
+            {
+                stmt.close();
+            }
+            dbDisconnect();
+        }
+    }
+
+    public static ResultSet dbExecute(String sqlStmt) throws SQLException {
         Statement stmt=null;
         ResultSet resultSet=null;
-        CachedRowSet cachedRowSet=null;
         try {
 
             connectdb();
             stmt = conn.createStatement();
             resultSet=stmt.executeQuery(sqlStmt);
+
             CachedRowSet crs = RowSetProvider.newFactory().createCachedRowSet();
-            cachedRowSet.populate(resultSet);
+           crs.populate(resultSet);
         }
         catch (SQLException e)
         {
@@ -66,5 +88,5 @@ public class ConnectionUtil {
         return resultSet;
 
 
-    }*/
+    }
 }
