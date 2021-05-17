@@ -7,7 +7,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import sample.model.RoleDAO;
+import sample.dao.RoleDAO;
 import sample.model.Roles;
 
 import javax.swing.*;

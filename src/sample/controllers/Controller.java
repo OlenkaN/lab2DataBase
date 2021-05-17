@@ -37,7 +37,7 @@ public class Controller {
         close_button.setOnAction(event -> {
             close_button.getScene().getWindow().hide();
             FXMLLoader loader=new FXMLLoader();
-            loader.setLocation(getClass().getResource("/sample/view/fxml/app.fxml"));
+            loader.setLocation(getClass().getResource("/sample/dao/app.fxml"));
             try {
                 loader.load();
             } catch (IOException e) {

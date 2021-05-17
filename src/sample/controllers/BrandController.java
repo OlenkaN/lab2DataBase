@@ -5,7 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import sample.model.BrandDAO;
+import sample.dao.BrandDAO;
 import sample.model.Brands;
 
 

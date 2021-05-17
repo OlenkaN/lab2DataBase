@@ -4,12 +4,11 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import sample.model.User;
-import sample.model.UserDAO;
+import sample.dao.UserDAO;
 import sample.model.Users;
 
 import javax.swing.*;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class UserController {
@@ -108,7 +107,7 @@ public class UserController {
                         return;
                     }
                     if (UserDAO.dbCheckIftUserIsMarried(user.getMarriage())) {
-                        JOptionPane.showMessageDialog(null, "There user with id : " + user.getMarriage() + "is already married");
+                        JOptionPane.showMessageDialog(null, "There user with id : " + user.getMarriage() + " is already married");
                         return;
                     }
                     if (!UserDAO.dbCheckIfExistUser(user.getId())) {

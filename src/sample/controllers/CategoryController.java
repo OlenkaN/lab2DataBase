@@ -6,10 +6,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import sample.model.BrandDAO;
-import sample.model.Brands;
 import sample.model.Categories;
-import sample.model.CategoryDAO;
+import sample.dao.CategoryDAO;
 
 import javax.swing.*;
 import java.sql.SQLException;

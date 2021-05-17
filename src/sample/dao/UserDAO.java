@@ -1,9 +1,11 @@
-package sample.model;
+package sample.dao;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import sample.ConnectionUtil;
+import sample.model.User;
+import sample.model.Users;
 
 
 import java.sql.PreparedStatement;
@@ -63,6 +65,7 @@ public class UserDAO {
                 "birthday='" + user.getBirthday() + "'," +
                 "user_id=" + user_id + " where id = " + user.getId() + ";");
         ConnectionUtil.dbExcecuteQuery(updateUser);
+        dbUpdateUserMarriage(user.getId().toString(), user_id);
 
 
     }

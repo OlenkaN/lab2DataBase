@@ -6,6 +6,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import sample.dao.BrandDAO;
+import sample.dao.CollectionDAO;
 import sample.model.*;
 
 import javax.swing.*;

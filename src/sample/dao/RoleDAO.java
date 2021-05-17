@@ -1,8 +1,9 @@
-package sample.model;
+package sample.dao;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import sample.ConnectionUtil;
+import sample.model.Roles;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

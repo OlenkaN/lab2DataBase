@@ -21,10 +21,10 @@
                 <Font size="18.0" />
             </font>
         </Label>
-        <TextField fx:id="nameCategory" layoutX="138.0" layoutY="38.0" prefHeight="32.0" prefWidth="107.0" promptText="Name" />
+        <TextField fx:id="nameRole" layoutX="138.0" layoutY="38.0" prefHeight="32.0" prefWidth="107.0" promptText="Name" />
         <Button layoutX="128.0" layoutY="156.0" mnemonicParsing="false" onAction="#insertRole" text="Add role" />
         <Separator layoutX="274.0" layoutY="9.0" orientation="VERTICAL" prefHeight="593.0" prefWidth="4.0" />
-        <TableView fx:id="categoryTable" layoutX="276.0" layoutY="187.0" prefHeight="413.0" prefWidth="522.0">
+        <TableView fx:id="rolesTable" layoutX="276.0" layoutY="187.0" prefHeight="413.0" prefWidth="522.0">
             <columns>
                 <TableColumn fx:id="colRoleName" prefWidth="212.0" text="Name" />
                 <TableColumn fx:id="colRoleDescription" prefWidth="309.60003662109375" text="Description" />
@@ -42,7 +42,7 @@
         </Label>
         <TextField fx:id="nameUpdate" layoutX="375.0" layoutY="33.0" prefHeight="32.0" prefWidth="107.0" promptText="Name" />
         <TextField fx:id="descriptionUpdate" layoutX="375.0" layoutY="78.0" prefHeight="32.0" prefWidth="107.0" promptText="Description" />
-        <TextField fx:id="descritionCategory" layoutX="138.0" layoutY="94.0" prefHeight="32.0" prefWidth="107.0" promptText="Description" />
+        <TextField fx:id="descritionRole" layoutX="138.0" layoutY="94.0" prefHeight="32.0" prefWidth="107.0" promptText="Description" />
         <Button layoutX="294.0" layoutY="140.0" mnemonicParsing="false" onAction="#searchRole" text="Search" />
         <Button layoutX="386.0" layoutY="140.0" mnemonicParsing="false" onAction="#updateRole" text="Update" />
         <Button layoutX="592.0" layoutY="140.0" mnemonicParsing="false" onAction="#SearchAllRoles" prefHeight="32.0" prefWidth="153.0" text="Search All Roles" />
