@@ -1137,44 +1137,55 @@ SELECT|sys.sys_config
       <RefTableName>users</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="338" parent="295" name="user_id">
+    <column id="338" parent="295" name="id">
       <Position>1</Position>
       <DataType>bigint|0s</DataType>
       <NotNull>1</NotNull>
+      <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="339" parent="295" name="brand_id">
+    <column id="339" parent="295" name="user_id">
       <Position>2</Position>
       <DataType>bigint|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="340" parent="295" name="roles_name">
+    <column id="340" parent="295" name="brand_id">
       <Position>3</Position>
+      <DataType>bigint|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="341" parent="295" name="roles_name">
+      <Position>4</Position>
       <DataType>varchar(50)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="341" parent="295" name="FK2ex4e4p7w1cu310kg2woisjl2">
+    <index id="342" parent="295" name="FK2ex4e4p7w1cu310kg2woisjl2">
       <ColNames>user_id</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="342" parent="295" name="FK2rx4e4p7w1cj310kg2woisjl2">
+    <index id="343" parent="295" name="FK2rx4e4p7w1cj310kg2woisjl2">
       <ColNames>brand_id</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="343" parent="295" name="FK2ex4e4p7w1cj310kg2woihjl2">
+    <index id="344" parent="295" name="FK2ex4e4p7w1cj310kg2woihjl2">
       <ColNames>roles_name</ColNames>
       <Type>btree</Type>
     </index>
-    <foreign-key id="344" parent="295" name="FK2ex4e4p7w1cu310kg2woisjl2">
+    <key id="345" parent="295" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="346" parent="295" name="FK2ex4e4p7w1cu310kg2woisjl2">
       <ColNames>user_id</ColNames>
       <RefTableName>users</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <foreign-key id="345" parent="295" name="FK2rx4e4p7w1cj310kg2woisjl2">
+    <foreign-key id="347" parent="295" name="FK2rx4e4p7w1cj310kg2woisjl2">
       <ColNames>brand_id</ColNames>
       <RefTableName>brand</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <foreign-key id="346" parent="295" name="FK2ex4e4p7w1cj310kg2woihjl2">
+    <foreign-key id="348" parent="295" name="FK2ex4e4p7w1cj310kg2woihjl2">
       <ColNames>roles_name</ColNames>
       <RefTableName>roles</RefTableName>
       <RefColNames>name</RefColNames>

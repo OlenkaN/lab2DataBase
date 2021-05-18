@@ -76,11 +76,9 @@ public class Product_CategoryDAO {
                 category_products.setIdProperty(resultSet.getInt("id"));
                 category_products.setCategoryIdProperty(resultSet.getInt("category_id"));
                 category_products.setProductIdProperty(resultSet.getInt("product_id"));
+
                 ObservableList<Products> products=ProductDAO.searchProducts(""+resultSet.getInt("product_id"));
                 category_products.setNameProductProperty(products.get(0).getNameProperty());
-
-                ObservableList<Products> productsObservableList=ProductDAO.searchProducts(""+resultSet.getInt("product_id"));
-                category_products.setNameProductProperty(productsObservableList.get(0).getNameProperty());
 
                 ObservableList<Categories> categoriesObservableList=CategoryDAO.searchCategory(""+resultSet.getInt("category_id"));
                 category_products.setNameCategoryProperty(categoriesObservableList.get(0).getNameProperty());
