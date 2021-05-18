@@ -4,15 +4,21 @@ package sample.controllers;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import sample.dao.*;
 import sample.model.Category_Products;
 import sample.model.Collections;
 
 import javax.swing.*;
+import java.io.IOException;
 import java.sql.SQLException;
 
 public class Product_CategoryController {
@@ -52,6 +58,27 @@ public class Product_CategoryController {
 
     @FXML
     private TextField id;
+    @FXML
+    private Button backHome;
+
+    @FXML
+    void backHome(ActionEvent actionEvent) {
+        Stage stage = (Stage) backHome.getScene().getWindow();
+        stage.close();
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/sample/views/home.fxml"));
+
+        try {
+            fxmlLoader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Parent root = fxmlLoader.getRoot();
+        stage = new Stage();
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setTitle("Home page");
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
 
 
     @FXML
@@ -95,11 +122,10 @@ public class Product_CategoryController {
                     return;
                 }
 
-                    Product_CategoryDAO.dbInsertConnection(Integer.parseInt(category_id.getText()), Integer.parseInt(product_id.getText()));
-                    ObservableList<Category_Products> category_products = Product_CategoryDAO.getAllCategoryProducts();
-                    populateTable(category_products);
-                }
-            catch (NumberFormatException e) {
+                Product_CategoryDAO.dbInsertConnection(Integer.parseInt(category_id.getText()), Integer.parseInt(product_id.getText()));
+                ObservableList<Category_Products> category_products = Product_CategoryDAO.getAllCategoryProducts();
+                populateTable(category_products);
+            } catch (NumberFormatException e) {
                 JOptionPane.showMessageDialog(null, "Id,year,brand should be integer numbers");
 
             } catch (SQLException throwables) {

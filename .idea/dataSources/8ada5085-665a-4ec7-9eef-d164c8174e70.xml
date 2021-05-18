@@ -1004,11 +1004,13 @@ SELECT|sys.sys_config
       <ColNames>category_id</ColNames>
       <RefTableName>category</RefTableName>
       <RefColNames>id</RefColNames>
+      <OnDelete>cascade</OnDelete>
     </foreign-key>
     <foreign-key id="311" parent="290" name="FK6rx4e4p7w1cj310kg2woisjl2">
       <ColNames>product_id</ColNames>
       <RefTableName>product</RefTableName>
       <RefColNames>id</RefColNames>
+      <OnDelete>cascade</OnDelete>
     </foreign-key>
     <column id="312" parent="291" name="id">
       <Position>1</Position>
@@ -1179,16 +1181,19 @@ SELECT|sys.sys_config
       <ColNames>user_id</ColNames>
       <RefTableName>users</RefTableName>
       <RefColNames>id</RefColNames>
+      <OnDelete>cascade</OnDelete>
     </foreign-key>
     <foreign-key id="347" parent="295" name="FK2rx4e4p7w1cj310kg2woisjl2">
       <ColNames>brand_id</ColNames>
       <RefTableName>brand</RefTableName>
       <RefColNames>id</RefColNames>
+      <OnDelete>cascade</OnDelete>
     </foreign-key>
     <foreign-key id="348" parent="295" name="FK2ex4e4p7w1cj310kg2woihjl2">
       <ColNames>roles_name</ColNames>
       <RefTableName>roles</RefTableName>
       <RefColNames>name</RefColNames>
+      <OnDelete>cascade</OnDelete>
     </foreign-key>
   </database-model>
 </dataSource>

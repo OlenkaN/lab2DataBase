@@ -54,5 +54,6 @@
         <Button layoutX="389.0" layoutY="176.0" mnemonicParsing="false" onAction="#updateCategory" text="Update" />
         <Button layoutX="595.0" layoutY="176.0" mnemonicParsing="false" onAction="#SearchAllCategories" prefHeight="32.0" prefWidth="148.0" text="Search All Category" />
         <Button layoutX="489.0" layoutY="176.0" mnemonicParsing="false" onAction="#deleteCategory" prefHeight="32.0" prefWidth="71.0" text="Delete" />
+        <Button fx:id="backHome" layoutX="56.0" layoutY="506.0" mnemonicParsing="false" onAction="#backHome" prefHeight="66.0" prefWidth="162.0" text="Back to home page" />
     </children>
 </AnchorPane>

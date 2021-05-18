@@ -3,6 +3,11 @@ package sample.controllers;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import sample.dao.*;
 import sample.model.Category_Products;
 
@@ -14,6 +19,7 @@ import javafx.scene.control.TextField;
 import sample.model.Users_brand_roles;
 
 import javax.swing.*;
+import java.io.IOException;
 import java.sql.SQLException;
 
 public class Users_brand_rolesController {
@@ -60,6 +66,26 @@ public class Users_brand_rolesController {
 
     @FXML
     private TextField roleUpdate;
+    @FXML
+    private Button backHome;
+    @FXML
+    void backHome(ActionEvent actionEvent) {
+        Stage stage = (Stage) backHome.getScene().getWindow();
+        stage.close();
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/sample/views/home.fxml"));
+
+        try {
+            fxmlLoader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Parent root = fxmlLoader.getRoot();
+        stage = new Stage();
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setTitle("Home page");
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
 
 
     @FXML
@@ -73,7 +99,7 @@ public class Users_brand_rolesController {
                     JOptionPane.showMessageDialog(null, "There no such connection with id: " + id.getText());
                     return;
                 }
-                Product_CategoryDAO.dbDeleteConnection(Integer.parseInt(id.getText()));
+                Users_brand_rolesDAO.dbDeleteConnection(Integer.parseInt(id.getText()));
                 ObservableList<Users_brand_roles> users_brand_roles = Users_brand_rolesDAO.getAllUserBrandRole();
                 populateTable(users_brand_roles);
             } catch (NumberFormatException e) {

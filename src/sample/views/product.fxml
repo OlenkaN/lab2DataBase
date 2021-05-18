@@ -22,7 +22,7 @@
             </font>
         </Label>
         <TextField fx:id="nameProduct" layoutX="103.0" layoutY="40.0" prefHeight="32.0" prefWidth="107.0" promptText="Name" />
-        <TextField fx:id="volumeProduct" layoutX="103.0" layoutY="94.0" prefHeight="32.0" prefWidth="107.0" promptText="Year" />
+        <TextField fx:id="volumeProduct" layoutX="103.0" layoutY="94.0" prefHeight="32.0" prefWidth="107.0" promptText="volume" />
         <Label layoutX="14.0" layoutY="156.0" prefHeight="22.0" prefWidth="82.0" text="collection">
             <font>
                 <Font size="18.0" />
@@ -35,7 +35,7 @@
 
 " />
         <Separator layoutX="274.0" layoutY="9.0" orientation="VERTICAL" prefHeight="593.0" prefWidth="4.0" />
-        <TableView fx:id="productsTable" layoutX="276.0" layoutY="218.0" prefHeight="382.0" prefWidth="520.0">
+        <TableView  fx:id="productsTable" layoutX="276.0" layoutY="218.0" prefHeight="382.0" prefWidth="520.0">
             <columns>
                 <TableColumn fx:id="colProductId" prefWidth="75.0" text="ID" />
                 <TableColumn fx:id="colProductName" prefWidth="75.0" text="Name" />
@@ -71,5 +71,6 @@
         <Button layoutX="389.0" layoutY="176.0" mnemonicParsing="false" onAction="#updateProduct" text="Update" />
         <Button layoutX="595.0" layoutY="172.0" mnemonicParsing="false" onAction="#SearchAllProduct" prefHeight="38.0" prefWidth="182.0" text="Search All Products" />
         <Button layoutX="488.0" layoutY="176.0" mnemonicParsing="false" onAction="#deleteProduct" prefHeight="32.0" prefWidth="71.0" text="Delete" />
+        <Button fx:id="backHome" layoutX="56.0" layoutY="506.0" mnemonicParsing="false" onAction="#backHome" prefHeight="66.0" prefWidth="162.0" text="Back to home page" />
     </children>
 </AnchorPane>

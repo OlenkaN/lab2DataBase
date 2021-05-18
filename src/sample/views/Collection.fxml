@@ -67,5 +67,6 @@
         <Button layoutX="389.0" layoutY="176.0" mnemonicParsing="false" onAction="#updateCollection" text="Update" />
         <Button layoutX="595.0" layoutY="172.0" mnemonicParsing="false" onAction="#SearchAllCollection" prefHeight="38.0" prefWidth="182.0" text="Search All Collections" />
         <Button layoutX="488.0" layoutY="176.0" mnemonicParsing="false" onAction="#deleteCollection" prefHeight="32.0" prefWidth="71.0" text="Delete" />
+        <Button fx:id="backHome" layoutX="56.0" layoutY="506.0" mnemonicParsing="false" onAction="#backHome" prefHeight="66.0" prefWidth="162.0" text="Back to home page" />
     </children>
 </AnchorPane>

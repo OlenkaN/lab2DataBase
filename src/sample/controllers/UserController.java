@@ -1,13 +1,20 @@
 package sample.controllers;
 
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import sample.model.User;
 import sample.dao.UserDAO;
 import sample.model.Users;
 
 import javax.swing.*;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 
@@ -62,6 +69,26 @@ public class UserController {
     private TableColumn<Users, Integer> colUser_ID;
     @FXML
     private TableView usersTable;
+    @FXML
+    private Button backHome;
+    @FXML
+    void backHome(ActionEvent actionEvent) {
+        Stage stage = (Stage) backHome.getScene().getWindow();
+        stage.close();
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/sample/views/home.fxml"));
+
+        try {
+            fxmlLoader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Parent root = fxmlLoader.getRoot();
+        stage = new Stage();
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setTitle("Home page");
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
 
     @FXML
     public void insertUser(javafx.event.ActionEvent actionEvent) throws SQLException {
