@@ -31,7 +31,48 @@ public class HomeController {
     @FXML
     private Button Category;
 
+    @FXML
+    private Button request_1;
+    @FXML
+    private Button request_2;
 
+    @FXML
+    void setRequest_1(ActionEvent actionEvent) {
+        Stage stage = (Stage) request_1.getScene().getWindow();
+        stage.close();
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/sample/views/request1ParameterVolume.fxml"));
+
+        try {
+            fxmlLoader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Parent root = fxmlLoader.getRoot();
+        stage = new Stage();
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setTitle("1");
+        stage.setScene(new Scene(root));
+        stage.showAndWait();
+    }
+
+    @FXML
+    void setRequest_2(ActionEvent actionEvent) {
+        Stage stage = (Stage)request_2.getScene().getWindow();
+        stage.close();
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/sample/views/request2ParameterYear.fxml"));
+
+        try {
+            fxmlLoader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Parent root = fxmlLoader.getRoot();
+        stage = new Stage();
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setTitle("1");
+        stage.setScene(new Scene(root));
+        stage.showAndWait();
+    }
 
     @FXML
     void role(ActionEvent actionEvent) {
@@ -165,6 +206,7 @@ public class HomeController {
         stage.setScene(new Scene(root));
         stage.show();
     }
+
     @FXML
     void user_brand_roles(ActionEvent actionEvent) {
         Stage stage = (Stage) Brands.getScene().getWindow();
