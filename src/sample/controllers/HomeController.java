@@ -48,6 +48,10 @@ public class HomeController {
     private Button request_7;
     @FXML
     private Button request_8;
+    @FXML
+    private Button request_9;
+    @FXML
+    private Button request_10;
 
     @FXML
     void setRequest_1(ActionEvent actionEvent) {
@@ -197,6 +201,44 @@ public class HomeController {
         stage = new Stage();
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.setTitle("8");
+        stage.setScene(new Scene(root));
+        stage.showAndWait();
+    }
+
+    @FXML
+    void setRequest_9(ActionEvent actionEvent) {
+        Stage stage = (Stage) request_9.getScene().getWindow();
+        stage.close();
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/sample/views/request9BrandHaveAllRoles.fxml"));
+
+        try {
+            fxmlLoader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Parent root = fxmlLoader.getRoot();
+        stage = new Stage();
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setTitle("9");
+        stage.setScene(new Scene(root));
+        stage.showAndWait();
+    }
+
+    @FXML
+    void setRequest_10(ActionEvent actionEvent) {
+        Stage stage = (Stage) request_9.getScene().getWindow();
+        stage.close();
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/sample/views/request10CollectionCount.fxml"));
+
+        try {
+            fxmlLoader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Parent root = fxmlLoader.getRoot();
+        stage = new Stage();
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setTitle("10");
         stage.setScene(new Scene(root));
         stage.showAndWait();
     }

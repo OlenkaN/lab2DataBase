@@ -11,7 +11,7 @@ import java.sql.SQLException;
 
 public class RequestsDAO {
     public static ObservableList<Requests> dbRequest1(Integer volume) throws SQLException {
-        String request = "SELECT collection.year_of_creation, product.volume" +
+        String request = "SELECT DISTINCT collection.year_of_creation, product.volume" +
                 " FROM collection" +
                 " INNER JOIN product ON collection.id = product.collection_id" +
                 " where product.volume > " + volume + " ;";
@@ -229,13 +229,79 @@ public class RequestsDAO {
     public static ObservableList<Requests> dbRequest8(Integer volume) throws SQLException {
         String request = " SELECT X.name " +
                 "FROM category as X" +
-                " WHERE NOT EXISTS ("+
-                "SELECT * " +
-                "FROM product AS Y " +
-                " WHERE Y.volume > " + volume + " AND NOT EXISTS (" +
+                " WHERE NOT EXISTS (" +
                 " SELECT *" +
                 " FROM category_product" +
-                " WHERE category_product.category_id = X.id AND category_product.product_id =Y.id));";
+                " INNER JOIN product ON category_product.product_id= product.id" +
+                " where product.volume < " + volume + " AND category_product.category_id=X.id);";
+
+        System.out.println(request);
+        ResultSet resultSet = ConnectionUtil.dbExecute(request);
+        System.out.println(resultSet);
+
+        try {
+            ObservableList<Requests> requests = FXCollections.observableArrayList();
+
+            while (resultSet.next()) {
+                Requests requests1 = new Requests();
+                System.out.println(resultSet.getString("name"));
+                requests1.setNameProperty(resultSet.getString("name"));
+                requests.add(requests1);
+            }
+            System.out.println(request.length());
+            return requests;
+
+        } catch (SQLException e) {
+            System.out.println("Error occurred while fetching the records from DB" + e);
+            e.printStackTrace();
+            throw e;
+        }
+    }
+    public static ObservableList<Requests> dbRequest9() throws SQLException {
+        String request = " SELECT X.name " +
+                "FROM roles as X" +
+                " WHERE  (" +
+                " SELECT COUNT( users_brand_roles.brand_id) " +
+                " FROM users_brand_roles" +
+                " WHERE users_brand_roles.roles_name=X.name)" +
+                " = (SELECT COUNT(brand.id) FROM brand);";
+
+        System.out.println(request);
+        ResultSet resultSet = ConnectionUtil.dbExecute(request);
+        System.out.println(resultSet);
+
+        try {
+            ObservableList<Requests> requests = FXCollections.observableArrayList();
+
+            while (resultSet.next()) {
+                Requests requests1 = new Requests();
+                System.out.println(resultSet.getString("name"));
+                requests1.setNameProperty(resultSet.getString("name"));
+                requests.add(requests1);
+            }
+            System.out.println(request.length());
+            return requests;
+
+        } catch (SQLException e) {
+            System.out.println("Error occurred while fetching the records from DB" + e);
+            e.printStackTrace();
+            throw e;
+        }
+    }
+    public static ObservableList<Requests> dbRequest10(Integer id) throws SQLException {
+        String request = " SELECT X.name " +
+                "FROM brand as X" +
+                " WHERE  (" +
+                " (SELECT MAX(B) FROM (SELECT (COUNT(collection.brand_id))  B " +
+                "FROM users_brand_roles AS Y " +
+                "INNER JOIN collection" +
+                " ON Y.brand_id=collection.brand_id "+
+                "WHERE Y.user_Id= "+id+" ) AS C) <="+
+                " (SELECT COUNT( collection.brand_id) " +
+                " FROM collection " +
+                "INNER JOIN brand" +
+                " WHERE brand.id=X.Id AND brand.id=collection.brand_id))" +
+                ";";
 
         System.out.println(request);
         ResultSet resultSet = ConnectionUtil.dbExecute(request);

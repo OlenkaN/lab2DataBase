@@ -134,6 +134,46 @@ public class RequestController {
     }
 
     @FXML
+    void search10(ActionEvent event) throws SQLException {
+        colName.setCellValueFactory(cellData -> cellData.getValue().namePropertyProperty());
+        if (parameter.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "There some empty fields that should be initialized");
+        } else {
+            try {
+                ObservableList<Requests> requests = RequestsDAO.dbRequest10(Integer.parseInt(parameter.getText()));
+                populateTable(requests);
+
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(null, "Parameter should be integer numbers");
+            } catch (SQLException throwables) {
+                System.out.println("Error occurred while insert the records in DB" + throwables);
+                throwables.printStackTrace();
+                throw throwables;
+            }
+
+        }
+    }
+
+    @FXML
+    void search9(ActionEvent event) throws SQLException {
+        colName.setCellValueFactory(cellData -> cellData.getValue().namePropertyProperty());
+
+        try {
+            ObservableList<Requests> requests = RequestsDAO.dbRequest9();
+            populateTable(requests);
+
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Parameter should be integer numbers");
+        } catch (SQLException throwables) {
+            System.out.println("Error occurred while insert the records in DB" + throwables);
+            throwables.printStackTrace();
+            throw throwables;
+        }
+
+
+    }
+
+    @FXML
     void search3(ActionEvent event) throws SQLException {
         colName.setCellValueFactory(cellData -> cellData.getValue().namePropertyProperty());
         if (parameter.getText().equals("")) {
