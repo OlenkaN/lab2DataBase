@@ -20,6 +20,7 @@ import sample.model.Products;
 import sample.model.Requests;
 
 import javax.swing.*;
+import java.awt.*;
 import java.io.IOException;
 import java.sql.SQLException;
 
@@ -44,6 +45,8 @@ public class RequestController {
 
     @FXML
     private Button backHome;
+    @FXML
+    private TextField parameter2;
 
     @FXML
     void backHome(ActionEvent actionEvent) {
@@ -109,23 +112,129 @@ public class RequestController {
         }
     }
 
+    @FXML
+    void search8(ActionEvent event) throws SQLException {
+        colName.setCellValueFactory(cellData -> cellData.getValue().namePropertyProperty());
+        if (parameter.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "There some empty fields that should be initialized");
+        } else {
+            try {
+                ObservableList<Requests> requests = RequestsDAO.dbRequest8(Integer.parseInt(parameter.getText()));
+                populateTable(requests);
+
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(null, "Parameter should be integer numbers");
+            } catch (SQLException throwables) {
+                System.out.println("Error occurred while insert the records in DB" + throwables);
+                throwables.printStackTrace();
+                throw throwables;
+            }
+
+        }
+    }
+
+    @FXML
+    void search3(ActionEvent event) throws SQLException {
+        colName.setCellValueFactory(cellData -> cellData.getValue().namePropertyProperty());
+        if (parameter.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "There some empty fields that should be initialized");
+        } else {
+            try {
+                ObservableList<Requests> requests = RequestsDAO.dbRequest3(parameter.getText());
+                populateTable(requests);
+
+            } catch (SQLException throwables) {
+                System.out.println("Error occurred while insert the records in DB" + throwables);
+                throwables.printStackTrace();
+                throw throwables;
+            }
+
+        }
+    }
+
+    @FXML
+    void search7(ActionEvent event) throws SQLException {
+        colName.setCellValueFactory(cellData -> cellData.getValue().namePropertyProperty());
+        if (parameter.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "There some empty fields that should be initialized");
+        } else {
+            try {
+                ObservableList<Requests> requests = RequestsDAO.dbRequest7(parameter.getText());
+                populateTable(requests);
+
+            } catch (SQLException throwables) {
+                System.out.println("Error occurred while insert the records in DB" + throwables);
+                throwables.printStackTrace();
+                throw throwables;
+            }
+
+        }
+    }
+
+    @FXML
+    void search4(ActionEvent event) throws SQLException {
+        colName.setCellValueFactory(cellData -> cellData.getValue().namePropertyProperty());
+        if (parameter.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "There some empty fields that should be initialized");
+        } else {
+            try {
+                ObservableList<Requests> requests = RequestsDAO.dbRequest4(parameter.getText());
+                populateTable(requests);
+
+            } catch (SQLException throwables) {
+                System.out.println("Error occurred while insert the records in DB" + throwables);
+                throwables.printStackTrace();
+                throw throwables;
+            }
+
+        }
+    }
+
+    @FXML
+    void search5(ActionEvent event) throws SQLException {
+        colName.setCellValueFactory(cellData -> cellData.getValue().namePropertyProperty());
+        colVolume.setCellValueFactory(cellData -> cellData.getValue().volumePropertyProperty().asObject());
+
+        if (parameter.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "There some empty fields that should be initialized");
+        } else {
+            try {
+                ObservableList<Requests> requests = RequestsDAO.dbRequest5(parameter.getText());
+                populateTable(requests);
+
+            } catch (SQLException throwables) {
+                System.out.println("Error occurred while insert the records in DB" + throwables);
+                throwables.printStackTrace();
+                throw throwables;
+            }
+
+        }
+    }
+
+    @FXML
+    void search6(ActionEvent event) throws SQLException {
+        colName.setCellValueFactory(cellData -> cellData.getValue().namePropertyProperty());
+        colSurname.setCellValueFactory(cellData -> cellData.getValue().surnamePropertyProperty());
+
+        if (parameter.getText().equals("") || parameter2.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "There some empty fields that should be initialized");
+        } else {
+            try {
+                ObservableList<Requests> requests = RequestsDAO.dbRequest6(parameter.getText(), parameter2.getText());
+                populateTable(requests);
+
+            } catch (SQLException throwables) {
+                System.out.println("Error occurred while insert the records in DB" + throwables);
+                throwables.printStackTrace();
+                throw throwables;
+            }
+
+        }
+    }
+
     private void populateTable(ObservableList<Requests> collectionsObservableList) {
         table.setItems(collectionsObservableList);
     }
 
-    /*@FXML
-    private void initialize() throws Exception {
-        try {
-            colVolume.setCellValueFactory(cellData -> cellData.getValue().volumePropertyProperty().asObject());
-
-            colYear.setCellValueFactory(cellData -> cellData.getValue().yearPropertyProperty().asObject());
-            colName.setCellValueFactory(cellData -> cellData.getValue().namePropertyProperty());
-            colSurname.setCellValueFactory(cellData -> cellData.getValue().surnamePropertyProperty());
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-        }
-    }*/
 
 }
